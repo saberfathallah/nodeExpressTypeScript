@@ -20,9 +20,10 @@ app.use('/users', router);
 
 ( async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/refreshjs", { useNewUrlParser: true, useUnifiedTopology: true });
+    // chango mongi with localhost to run projet in local
+    await mongoose.connect("mongodb://mongo:27017/refreshjs", { useNewUrlParser: true, useUnifiedTopology: true });
   } catch (e) {
     throw new Error(e);
   }
-  app.listen(PORT, () => console.log(`🚀 application ready at ${PORT}`));
+  app.listen(PORT, "0.0.0.0", () => console.log(`🚀 application ready at ${PORT}`));
 })();
