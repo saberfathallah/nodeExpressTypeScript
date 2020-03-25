@@ -2,14 +2,19 @@
   "name": "noderefrechme",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node src/index.js"
+    "start": "tsc-watch --onSuccess \"node dist/index.js\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.3",
+    "@types/mongoose": "^5.7.7",
+    "@types/node": "^12.12.31",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-node": "^0.0.1-security",
@@ -21,6 +26,8 @@
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.11",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "tsc-watch": "^4.2.3",
+    "typescript": "^3.8.3"
   }
 }

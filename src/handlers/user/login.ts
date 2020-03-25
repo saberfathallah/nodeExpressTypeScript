@@ -3,6 +3,11 @@ import jwt from 'jsonwebtoken';
 import Joi from 'joi';
 import User from '../../models/user';
 
+interface MyFormValues {
+  password: string;
+  _id: string;
+}
+
 const schema = Joi.object().keys({
   email: Joi.string()
     .email()
@@ -20,7 +25,7 @@ const login = async (req, res) => {
     return res.status(400).json({ error: error.details[0].message });
   }
   try {
-    const userFromDB = await User.findOne({ email });
+    const userFromDB : any = await User.findOne({ email });
     if (
       !userFromDB ||
       !bcrypt.compareSync(password, userFromDB.password)

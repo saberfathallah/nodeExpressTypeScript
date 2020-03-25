@@ -5,9 +5,11 @@
 
 # testing
 /coverage
+/dist
 
 # production
 /build
+/C:tmpnodejsnpm-cache
 
 npm-debug.log*
 yarn-debug.log*
