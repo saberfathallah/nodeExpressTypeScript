@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import express, { Request, Response, } from 'express';
-import router from './routes';
+import routes from './routes';
 
 dotenv.config();
 mongoose.Promise = global.Promise;
@@ -15,8 +15,7 @@ app.use(bodyParser.json());
 app.use('/healthz', (req: Request, res: Response) => {
   res.send('OK');
 });
-
-app.use('/users', router);
+routes(app);
 
 ( async () => {
   try {

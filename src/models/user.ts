@@ -14,6 +14,15 @@ const userSchema = new Schema({
     type: String,
     default: null,
   },
+}, 
+{
+  // toJSON: { virtuals: true, versionKey: false },
+  toJSON: {
+  transform: (doc, cat) => {
+    cat.id = cat._id;
+    delete cat._id;
+    delete cat.__v;
+  }}
 });
 
 export default mongoose.model('User', userSchema);

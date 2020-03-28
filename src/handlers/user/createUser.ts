@@ -15,7 +15,7 @@ const schema = Joi.object().keys({
     .error(() => ({
       message: 'name is required !',
     })),
-    password: Joi.string()
+  password: Joi.string()
     .required()
     .error(() => ({
       message: 'password is required !',

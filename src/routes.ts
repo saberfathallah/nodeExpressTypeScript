@@ -1,17 +1,7 @@
-import express from 'express';
+import categoryRouter from './routes/categoryRoutes';
+import userRouter from './routes/userRoutes';
 
-import {
-  createUser,
-  getAllUsers,
-  login,
-  deleteUser,
-} from './handlers/user';
-
-const router = express.Router();
-
-router.post('/', createUser);
-router.get('/', getAllUsers);
-router.post('/login', login);
-router.delete('/', deleteUser);
-
-export default router;
+export default (app) => {
+  app.use('/categories', categoryRouter);
+  app.use('/users', userRouter);
+};
