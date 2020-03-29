@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 interface CategorySchemaType extends mongoose.Document {
     name: string;
     level: number;
-    parentId: mongoose.Types.ObjectId;
+    parentId: string;
     id: string;
 }
 
@@ -20,7 +20,7 @@ const categorySchema = new Schema ({
   },
   parentId: { 
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category' 
+    ref: 'Category'
   },
 }, 
 {

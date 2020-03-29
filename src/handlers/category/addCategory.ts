@@ -9,7 +9,7 @@ Joi.objectId = require('joi-objectid')(Joi)
 const schema = Joi.object({
   name: Joi.string().required().error(() => ({ message: 'name is required or string !' })),
   level: Joi.number().required().valid(1, 2, 3, 4).error(() => ({ message: 'level is required or one of 1, 2, 3, 4 !' })),
-  parentId: Joi.objectId().required().error(() => ({ message: 'categoryId is required !' }))
+  parentId: Joi.objectId().optional().error(() => ({ message: 'categoryId is obejctId !' }))
 });
 
 const addCategory = async (req: Request, res: Response) => {
