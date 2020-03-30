@@ -1,5 +1,11 @@
 import mongoose, { Schema } from 'mongoose';
 
+interface IUserSchemaType extends mongoose.Document {
+  email: string;
+  name: string;
+  password: string;
+}
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -18,11 +24,11 @@ const userSchema = new Schema({
 {
   // toJSON: { virtuals: true, versionKey: false },
   toJSON: {
-  transform: (doc, cat) => {
-    cat.id = cat._id;
-    delete cat._id;
-    delete cat.__v;
+  transform: (doc, post) => {
+    post.id = post._id;
+    delete post._id;
+    delete post.__v;
   }}
 });
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model<IUserSchemaType>('User', userSchema);

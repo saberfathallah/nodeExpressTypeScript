@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import mongoose from 'mongoose';
+
 import Post from '../../models/posts';
 import validateUser from '../../utils/validateUser';
 

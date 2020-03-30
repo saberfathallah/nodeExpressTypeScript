@@ -1,10 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
 
 interface CategorySchemaType extends mongoose.Document {
-    name: string;
-    level: number;
-    parentId: string;
-    id: string;
+  name: string;
+  level: number;
+  parentId: string;
+  id: string;
 }
 
 const categorySchema = new Schema ({
