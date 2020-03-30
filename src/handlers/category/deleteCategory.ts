@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import Category from '../../models/category';
 import Post from '../../models/posts';
+import Comment from '../../models/comment';
 import validateUser from '../../utils/validateUser';
 
 const deleteSubCategories = async (parentId: string, res: Response) => {
@@ -10,6 +11,7 @@ const deleteSubCategories = async (parentId: string, res: Response) => {
     if (subCategoris.length > 0) {
       await Promise.all(subCategoris.map(async cat => {
         await Post.deleteMany({ categoryId: cat.id });
+        await Comment.deleteMany({ categoryId: cat.id })
         await deleteSubCategories(cat.id, res)
       }));
       await Category.deleteMany({ parentId })
