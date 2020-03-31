@@ -11,7 +11,7 @@ const getPostsByUserId = async (req: Request, res: Response) => {
     const posts = await Post.find(query);
     return res.status(200).json({ error: null, posts });
   } catch (error) {
-    return res.status(500).json({ category: null, error });
+    return res.status(500).json({ posts: null, error });
   };
 }
 
