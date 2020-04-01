@@ -24,6 +24,8 @@ const addCategory = async (req: Request, res: Response) => {
     const category = await Category.create({
       ...categoryBody,
     });
+    await Category.findOneAndUpdate({ _id: category.parentId }, { $push: { children: category.id } })
+
     return res.status(200).json({ error: null, category });
    } catch (error) {
      return res.status(500).json({ category: null, error });

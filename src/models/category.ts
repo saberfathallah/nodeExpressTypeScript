@@ -8,6 +8,7 @@ interface CategorySchemaType extends mongoose.Document {
 }
 
 const categorySchema = new Schema ({
+  children: [{ type: Schema.Types.ObjectId, ref: 'Category', default: [] }],
   name: {
     type: String,
     required: true,
