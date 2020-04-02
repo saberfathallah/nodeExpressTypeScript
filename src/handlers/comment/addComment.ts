@@ -24,8 +24,10 @@ const addComment = async (req: Request, res: Response) => {
 
   try {
     const commentBody = { ...req.body, userId: userid, postId };
-    const comment = await Comment.create({ ...commentBody });
+    let comment = await Comment.create({ ...commentBody });
+    
     await Post.findOneAndUpdate({ _id: postId }, { $push: { comments: comment.id } })
+    comment = await comment.populate('userId', 'name').execPopulate()
     return res.status(200).json({ comment, error: null });
   } catch (err) {
     return res.status(500).json({ comment: null, error: err });
