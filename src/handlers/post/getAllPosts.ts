@@ -6,7 +6,12 @@ import validateUser from '../../utils/validateUser';
 const getAllPosts = async (req: Request, res: Response) => {
   validateUser(req, res);
   try {
-    const posts = await Post.find().populate('comments');
+    const posts = await Post.find().populate('userId', 'name').
+    populate({
+      path: 'comments',
+      populate: { path: 'userId' }
+    });
+  
     return res.status(200).json({ error: null, posts });
   } catch (error) {
     return res.status(500).json({ categories: null, error, });

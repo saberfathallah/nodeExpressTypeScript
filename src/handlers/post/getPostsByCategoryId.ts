@@ -48,11 +48,19 @@ const getPostsByCategoryId = async (req: Request, res: Response) => {
 
     const postsSubCategories:IPosts[] = await Post
       .find({ categoryId: { $in : subCategoriesIds } })
-      .populate('comments', 'description');
+      .populate({
+        path: 'comments',
+        populate: { path: 'userId' }
+      })
+      .populate('userId', 'name');
   
     const posts:IPosts[] = await Post
       .find({ categoryId })
-      .populate('comments', 'description');
+      .populate({
+        path: 'comments',
+        populate: { path: 'userId' }
+      })
+      .populate('userId', 'name');
 
     return res.status(200).json({ posts: [...posts, ...postsSubCategories], error: null });
 
