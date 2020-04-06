@@ -6,7 +6,7 @@ import validateUser from '../../utils/validateUser';
 const getAllPosts = async (req: Request, res: Response) => {
   validateUser(req, res);
   try {
-    const posts = await Post.find().populate('userId', 'name').
+    const posts = await Post.find().populate('userId').
     populate({
       path: 'comments',
       populate: { path: 'userId' }

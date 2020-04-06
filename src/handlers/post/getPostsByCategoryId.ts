@@ -52,7 +52,7 @@ const getPostsByCategoryId = async (req: Request, res: Response) => {
         path: 'comments',
         populate: { path: 'userId' }
       })
-      .populate('userId', 'name');
+      .populate('userId');
   
     const posts:IPosts[] = await Post
       .find({ categoryId })
@@ -60,7 +60,7 @@ const getPostsByCategoryId = async (req: Request, res: Response) => {
         path: 'comments',
         populate: { path: 'userId' }
       })
-      .populate('userId', 'name');
+      .populate('userId');
 
     return res.status(200).json({ posts: [...posts, ...postsSubCategories], error: null });
 
