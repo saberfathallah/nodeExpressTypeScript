@@ -9,7 +9,7 @@ async function updateComment(req: Request, res: Response) {
   const { commentId } = req.params;
   const { description } = req.body;
   try {
-    let comment:any = await Coment.findOne({ _id: commentId});
+    let comment:any = await Coment.findOne({ _id: commentId}).populate("userId");
     comment.description = description;
     await comment.save();
 
