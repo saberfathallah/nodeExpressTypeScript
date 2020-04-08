@@ -8,7 +8,10 @@ const getPostsByUserId = async (req: Request, res: Response) => {
     validateUser(req, res);
     const { userid } = req.headers;
     const query:any =  { userId: userid };
-    const posts = await Post.find(query).populate('userId', 'name');
+    const posts = await Post.find(query).populate('userId').populate({
+      path: 'comments',
+      populate: { path: 'userId' }
+    });
     return res.status(200).json({ error: null, posts });
   } catch (error) {
     return res.status(500).json({ posts: null, error });
