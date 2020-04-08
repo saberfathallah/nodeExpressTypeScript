@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-underscore-dangle */
 import mongoose, { Schema } from 'mongoose';
 
 interface CategorySchemaType extends mongoose.Document {
@@ -7,7 +9,7 @@ interface CategorySchemaType extends mongoose.Document {
   id: string;
 }
 
-const categorySchema = new Schema ({
+const categorySchema = new Schema({
   children: [{ type: Schema.Types.ObjectId, ref: 'Category', default: [] }],
   name: {
     type: String,
@@ -19,18 +21,18 @@ const categorySchema = new Schema ({
     required: true,
     enum: [1, 2, 3, 4],
   },
-  parentId: { 
+  parentId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category'
+    ref: 'Category',
   },
-}, 
+},
 {
-  toJSON: { 
-    transform: (doc, cat) => {
+  toJSON: {
+    transform: (doc, cat): void => {
       cat.id = cat._id;
       delete cat._id;
       delete cat.__v;
-    }
+    },
   },
 });
 

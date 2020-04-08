@@ -1,13 +1,15 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-param-reassign */
 import mongoose, { Schema, Document } from 'mongoose';
 
-interface IPostSchema extends Document {
+interface PostSchema extends Document {
   comments: string[];
   description: string;
   userId: string;
   categoryId: string;
-};
+}
 
-const postSchema = new Schema ({
+const postSchema = new Schema({
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment', default: [] }],
   description: {
     type: String,
@@ -21,17 +23,17 @@ const postSchema = new Schema ({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
   },
-}, 
-{ 
+},
+{
   timestamps: true,
-  toJSON: { 
-    transform: (doc, post) => {
+  toJSON: {
+    transform: (doc, post): void => {
       post.id = post._id;
       delete post._id;
       delete post.__v;
-    }
+    },
   },
 });
 
 
-export default mongoose.model<IPostSchema>('Post', postSchema);
+export default mongoose.model<PostSchema>('Post', postSchema);

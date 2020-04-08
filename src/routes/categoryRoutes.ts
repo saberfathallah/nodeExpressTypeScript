@@ -13,4 +13,3 @@ categoryRouter.get('/', getAllCategories);
 categoryRouter.delete('/:categoryId', deleteCategory);
 
 export default categoryRouter;
-

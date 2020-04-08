@@ -1,12 +1,10 @@
+/* eslint-disable no-underscore-dangle */
+import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Joi from 'joi';
-import User from '../../models/user';
 
-interface MyFormValues {
-  password: string;
-  _id: string;
-}
+import User from '../../models/user';
 
 const schema = Joi.object().keys({
   email: Joi.string()
@@ -18,17 +16,17 @@ const schema = Joi.object().keys({
   password: Joi.string().required(),
 });
 
-const login = async (req, res) => {
+const login = async (req: Request, res: Response): Promise<object> => {
   const { email, password } = req.body;
   const { error } = Joi.validate({ email, password }, schema);
   if (error) {
     return res.status(400).json({ error: error.details[0].message });
   }
   try {
-    const userFromDB : any = await User.findOne({ email });
+    const userFromDB: any = await User.findOne({ email });
     if (
-      !userFromDB ||
-      !bcrypt.compareSync(password, userFromDB.password)
+      !userFromDB
+      || !bcrypt.compareSync(password, userFromDB.password)
     ) {
       return res.status(400).json({ error: 'Vos identifiants ne semblent pas corrects.' });
     }
@@ -39,7 +37,6 @@ const login = async (req, res) => {
       .status(200)
       .send({ user: userFromDB, token });
   } catch (err) {
-    console.error(err);
     return res.status(500).json({ error: err });
   }
 };

@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import Joi from 'joi';
 import bcrypt from 'bcryptjs';
 
@@ -22,7 +23,7 @@ const schema = Joi.object().keys({
     })),
 });
 
-const createUser = async (req, res) => {
+const createUser = async (req: Request, res: Response): Promise<object> => {
   const { email, name, password } = req.body;
   const { error } = Joi.validate({ email, name, password }, schema);
   if (error) {
@@ -39,6 +40,6 @@ const createUser = async (req, res) => {
   } catch (err) {
     return res.status(500).json({ user: null, error: err });
   }
-}
+};
 
 export default createUser;
