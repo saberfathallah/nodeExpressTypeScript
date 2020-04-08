@@ -6,7 +6,7 @@ const postRouter = express.Router();
 
 postRouter.post('/', addPost);
 postRouter.get('/', getPostsByUserId);
-postRouter.get('/all', getAllPosts);
+postRouter.get('/all/:from/:limit', getAllPosts);
 postRouter.get('/categories/:categoryId', getPostsByCategoryId);
 
 export default postRouter;
