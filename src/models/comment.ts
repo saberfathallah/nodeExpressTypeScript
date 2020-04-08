@@ -1,13 +1,15 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-param-reassign */
 import mongoose, { Schema } from 'mongoose';
 
-interface ICommentSchemaType extends mongoose.Document {
+interface CommentSchemaType extends mongoose.Document {
   categoryId: string;
   postId: string;
   description: string;
   userId: string;
 }
 
-const commentSchema = new Schema ({
+const commentSchema = new Schema({
   description: {
     type: String,
     required: true,
@@ -25,15 +27,15 @@ const commentSchema = new Schema ({
     ref: 'Post',
   },
 },
-{ 
+{
   timestamps: true,
-    toJSON: { 
-      transform: (doc, comment) => {
-        comment.id = comment._id;
-        delete comment._id;
-        delete comment.__v;
-      }
+  toJSON: {
+    transform: (doc, comment): void => {
+      comment.id = comment._id;
+      delete comment._id;
+      delete comment.__v;
     },
+  },
 });
 
-export default mongoose.model<ICommentSchemaType>('Comment', commentSchema);
+export default mongoose.model<CommentSchemaType>('Comment', commentSchema);

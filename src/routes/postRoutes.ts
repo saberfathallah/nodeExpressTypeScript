@@ -1,6 +1,8 @@
 import express from 'express';
 
-import { addPost, getPostsByUserId, getPostsByCategoryId, getAllPosts } from '../handlers/post';
+import {
+  addPost, getPostsByUserId, getPostsByCategoryId, getAllPosts,
+} from '../handlers/post';
 
 const postRouter = express.Router();
 
@@ -10,5 +12,3 @@ postRouter.get('/all/:from/:limit', getAllPosts);
 postRouter.get('/categories/:categoryId', getPostsByCategoryId);
 
 export default postRouter;
-
-

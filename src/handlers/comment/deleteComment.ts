@@ -4,7 +4,7 @@ import Coment from '../../models/comment';
 import Post from '../../models/posts';
 import validateUser from '../../utils/validateUser';
 
-async function deleteComment(req: Request, res: Response) {
+async function deleteComment(req: Request, res: Response): Promise<object> {
   validateUser(req, res);
   const { commentId } = req.params;
   const { postId } = req.body;
@@ -18,7 +18,7 @@ async function deleteComment(req: Request, res: Response) {
     );
     return res.status(200).json({ error: null, commentId, postId });
   } catch (error) {
-    return res.status(500).json({ user: null, error, });
+    return res.status(500).json({ user: null, error });
   }
 }
 

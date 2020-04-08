@@ -3,7 +3,7 @@ import userRouter from './routes/userRoutes';
 import postRouter from './routes/postRoutes';
 import commentRouter from './routes/commentRoutes';
 
-export default (app) => {
+export default (app): void => {
   app.use('/categories', categoryRouter);
   app.use('/users', userRouter);
   app.use('/posts', postRouter);
