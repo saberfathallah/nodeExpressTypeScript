@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import express, { Request, Response } from 'express';
+
 import routes from './routes';
 
 dotenv.config();
