@@ -24,5 +24,5 @@ routes(app);
   } catch (e) {
     throw new Error(e);
   }
-  app.listen(PORT, () => console.log(`🚀application ready at ${PORT}`));
+  app.listen(PORT, () => console.log(`🚀 application ready at ${PORT}`));
 })();
