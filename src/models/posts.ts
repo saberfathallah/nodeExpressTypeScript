@@ -10,6 +10,7 @@ interface PostSchema extends Document {
 }
 
 const postSchema = new Schema({
+  likes: [{ type: Schema.Types.ObjectId, ref: 'User', default: [] }],
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment', default: [] }],
   description: {
     type: String,
