@@ -10,9 +10,60 @@ const getAllPosts = async (req: Request, res: Response): Promise<object> => {
   const intLimit = Number(limit);
 
   try {
+    // const a: any = await Post.aggregate([
+    //   {
+    //     $lookup: {
+    //       from: 'comments',
+    //       localField: '_id',
+    //       foreignField: 'postId',
+    //       as: 'commentsObject',
+    //     },
+    //   },
+    //   {
+    //     $lookup: {
+    //       from: 'users',
+    //       localField: 'userId',
+    //       foreignField: '_id',
+    //       as: 'userObject',
+    //     },
+    //   },
+    // ]);
+
+
+    // nested
+    // const b: any = await Post.aggregate([
+    //   {
+    //     $lookup: {
+    //       from: 'users',
+    //       localField: 'userId',
+    //       foreignField: '_id',
+    //       as: 'userObject',
+    //     },
+    //   },
+    //   {
+    //     $lookup: {
+    //       from: 'comments',
+    //       localField: '_id',
+    //       foreignField: 'postId',
+    //       as: 'comments',
+    //     },
+    //   },
+    //   { $unwind: '$comments' },
+    //   {
+    //     $lookup: {
+    //       from: 'users',
+    //       localField: 'comments.userId',
+    //       foreignField: '_id',
+    //       as: 'comments.user',
+    //     },
+    //   },
+    //   { $unwind: '$comments.user' },
+    // ]);
+    // console.log('b', b);
     const totalPosts = await Post.count({ });
     const posts = await Post.find().skip(intForm)
-      .limit(intLimit).populate('userId')
+      .limit(intLimit)
+      .populate('userId')
       .populate({
         path: 'comments',
         populate: { path: 'userId' },
