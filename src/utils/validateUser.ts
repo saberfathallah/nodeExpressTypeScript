@@ -6,7 +6,6 @@ const validateUser = (req: Request, res: Response): void => {
 
   if (!userid) {
     res.status(401).json({ error: 'error authentification' });
-    throw new Error('error authentification');
   }
 };
 

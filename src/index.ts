@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import express, { Request, Response } from 'express';
-
 import routes from './routes';
 
 dotenv.config();
@@ -23,10 +22,12 @@ routes(app);
 (async () => {
   try {
     // chango localhost with mongo to run projet in local
-    await mongoose.connect('mongodb://localhost:27017/refreshjs', { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(`mongodb://localhost:27017/${process.env.DATA_BASE_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true });
   } catch (e) {
     throw new Error(e);
   }
   // eslint-disable-next-line no-console
-  app.listen(PORT, () => console.log(`🚀 application ready at ${PORT}`));
+  // app.listen(PORT, () => console.log(`🚀 application ready at ${PORT}`));
 })();
+
+export default app;
