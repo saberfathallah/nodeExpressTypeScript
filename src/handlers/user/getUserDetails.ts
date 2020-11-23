@@ -10,7 +10,7 @@ const getUserDetails = async (req: Request, res: Response): Promise<object> => {
     const user = await User.findOne({ _id: userid });
     return res.status(200).json({ error: null, user });
   } catch (error) {
-    return res.status(200).json({ error, user: null });
+    return res.status(500).json({ error, user: null });
   }
 };
 
