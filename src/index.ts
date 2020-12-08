@@ -27,7 +27,7 @@ routes(app);
     throw new Error(e);
   }
   // eslint-disable-next-line no-console
-  // app.listen(PORT, () => console.log(`🚀 application ready at ${PORT}`));
+  app.listen(PORT, () => console.log(`🚀 application ready at ${PORT}`));
 })();
 
 export default app;
