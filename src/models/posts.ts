@@ -36,5 +36,6 @@ const postSchema = new Schema({
   },
 });
 
+postSchema.index({ description: 1 });
 
 export default mongoose.model<PostSchema>('Post', postSchema);
